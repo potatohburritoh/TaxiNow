@@ -1,0 +1,264 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "APIs for frontend use.",
+        "title": "Backend APIs",
+        "contact": {},
+        "version": "1.0"
+    },
+    "basePath": "/",
+    "paths": {
+        "/location": {
+            "get": {
+                "description": "Retrieve the latest stored location",
+                "produces": [
+                    "text/plain"
+                ],
+                "tags": [
+                    "Location API"
+                ],
+                "summary": "Get latest location",
+                "responses": {
+                    "200": {
+                        "description": "Latest location details",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update location with latitude and longitude",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Location API"
+                ],
+                "summary": "Update location",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Latitude",
+                        "name": "lat",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Longitude",
+                        "name": "lng",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Latitude and Longitude updated successfully",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/maps/coordstosn": {
+            "get": {
+                "description": "Convert latitude and longitude to street name",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Maps API"
+                ],
+                "summary": "Convert coordinates to street name",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Latitude",
+                        "name": "lat",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Longitude",
+                        "name": "long",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Street name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/maps/sntocoords": {
+            "get": {
+                "description": "Convert street name to latitude and longitude",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Maps API"
+                ],
+                "summary": "Convert street name to coordinates",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Street name",
+                        "name": "streetName",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Latitude and Longitude",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "number"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/recommendations": {
+            "get": {
+                "description": "Retrieves a list of recommended locations based on user's current position and other parameters.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Recommendation API"
+                ],
+                "summary": "Get Recommended Locations",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "description": "Latitude of the user's current position",
+                        "name": "lat",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "number",
+                        "description": "Longitude of the user's current position",
+                        "name": "lon",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Number of random coordinates to generate around the user's position",
+                        "name": "numOfRandomCoordinates",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Maximum number of recommended locations to return (at least 1 will be returned)",
+                        "name": "maxNumOfResults",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of recommended locations with latitude, longitude, and estimated travel duration in seconds",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "array"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/taxi": {
+            "get": {
+                "description": "Retrieve taxi coordinates from an external API and return only those within 5km of the specified coordinate as JSON.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Taxi API"
+                ],
+                "summary": "Get taxi coordinates within 5km of a given coordinate",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "description": "Latitude of the reference point",
+                        "name": "latitude",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "number",
+                        "description": "Longitude of the reference point",
+                        "name": "longitude",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/main.Coordinate"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.Coordinate": {
+            "type": "object",
+            "properties": {
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

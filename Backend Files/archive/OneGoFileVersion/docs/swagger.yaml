@@ -1,0 +1,97 @@
+basePath: /api/v1
+info:
+  contact: {}
+  description: This is a sample server for the API.
+  title: Your API's Title
+  version: "1.0"
+paths:
+  /coordinatesToStreetName:
+    get:
+      description: Convert latitude and longitude to street name
+      parameters:
+      - description: Latitude
+        in: query
+        name: lat
+        required: true
+        type: string
+      - description: Longitude
+        in: query
+        name: long
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Street name
+          schema:
+            type: string
+      summary: Convert coordinates to street name
+  /getLocation:
+    get:
+      description: Retrieve the latest stored location
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: Latest location details
+          schema:
+            type: string
+      summary: Get latest location
+  /streetNameToCoordinates:
+    get:
+      consumes:
+      - application/json
+      description: Convert street name to latitude and longitude
+      parameters:
+      - description: Street name
+        in: query
+        name: streetName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Latitude and Longitude
+          schema:
+            items:
+              type: number
+            type: array
+      summary: Convert street name to coordinates
+  /taxiCoordinates:
+    get:
+      description: Retrieve taxi coordinates from an external API
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: HTML containing taxi coordinates
+          schema:
+            type: string
+      summary: Get taxi coordinates
+  /updateLocation:
+    get:
+      consumes:
+      - application/json
+      description: Update location with latitude and longitude
+      parameters:
+      - description: Latitude
+        in: query
+        name: lat
+        required: true
+        type: string
+      - description: Longitude
+        in: query
+        name: lng
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Latitude and Longitude updated successfully
+          schema:
+            type: string
+      summary: Update location
+swagger: "2.0"

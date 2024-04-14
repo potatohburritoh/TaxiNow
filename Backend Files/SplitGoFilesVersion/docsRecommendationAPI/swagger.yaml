@@ -1,0 +1,64 @@
+basePath: /
+definitions:
+  main.Location:
+    properties:
+      lat:
+        type: number
+      lng:
+        type: number
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This service return the coordinates of recommended locations for user
+    to hail cab.
+  title: Recommended Locations
+  version: "1.0"
+paths:
+  /recommendations:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves a list of recommended locations based on user's current
+        position and other parameters.
+      parameters:
+      - description: Latitude of the user's current position
+        in: query
+        name: lat
+        required: true
+        type: number
+      - description: Longitude of the user's current position
+        in: query
+        name: lon
+        required: true
+        type: number
+      - description: Number of coordinates to generate around the user's position
+        in: query
+        name: numOfCoordinates
+        type: integer
+      - description: Number of recommended locations to return
+        in: query
+        name: numOfResults
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A list of recommended locations with latitude, longitude, and
+            other relevant information
+          schema:
+            items:
+              $ref: '#/definitions/main.Location'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get Recommended Locations
+      tags:
+      - location
+swagger: "2.0"

@@ -1,0 +1,147 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server for the API.",
+        "title": "Your API's Title",
+        "contact": {},
+        "version": "1.0"
+    },
+    "basePath": "/api/v1",
+    "paths": {
+        "/coordinatesToStreetName": {
+            "get": {
+                "description": "Convert latitude and longitude to street name",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Convert coordinates to street name",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Latitude",
+                        "name": "lat",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Longitude",
+                        "name": "long",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Street name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/getLocation": {
+            "get": {
+                "description": "Retrieve the latest stored location",
+                "produces": [
+                    "text/plain"
+                ],
+                "summary": "Get latest location",
+                "responses": {
+                    "200": {
+                        "description": "Latest location details",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/streetNameToCoordinates": {
+            "get": {
+                "description": "Convert street name to latitude and longitude",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Convert street name to coordinates",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Street name",
+                        "name": "streetName",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Latitude and Longitude",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "number"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/taxiCoordinates": {
+            "get": {
+                "description": "Retrieve taxi coordinates from an external API",
+                "produces": [
+                    "text/html"
+                ],
+                "summary": "Get taxi coordinates",
+                "responses": {
+                    "200": {
+                        "description": "HTML containing taxi coordinates",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/updateLocation": {
+            "get": {
+                "description": "Update location with latitude and longitude",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update location",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Latitude",
+                        "name": "lat",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Longitude",
+                        "name": "lng",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Latitude and Longitude updated successfully",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
