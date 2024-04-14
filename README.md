@@ -19,7 +19,11 @@ https://youtu.be/Xihp55akEYM
 
 ## Getting Started
 
-1. **Run:** Run the application.
+1. **Run:** Run the application: 
+```properties
+cd \ taxi-now-frontend
+npm start
+```  
 2. **Allow Location Services (Optional):** Grant permission for the most accurate taxi availability information.
 3. **Explore:** Navigate the map, zoom in/out, and drag to explore different areas.
 4. **Get Recommendations:** Tap the "Recommend" button for the best taxi-hailing spots.
