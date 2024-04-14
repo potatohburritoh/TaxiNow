@@ -19,9 +19,9 @@ https://youtu.be/Xihp55akEYM
 
 ## Getting Started
 
-1. **Run:** Run the application: 
+1. **Run:** Run the application:
+Open 'taxi-now-frontend' in terminal
 ```properties
-cd \ taxi-now-frontend
 npm start
 ```  
 2. **Allow Location Services (Optional):** Grant permission for the most accurate taxi availability information.
