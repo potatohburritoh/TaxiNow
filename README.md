@@ -1,6 +1,6 @@
 # TaxiNow: Real-time Traffic Conditions
 
-# SC2006 Project by TCE1 Group TREE
+## SC2006 Project by TCE1 Group TREE
 
 Revolutionizing taxi availability in Singapore! Get real-time traffic information, locate available taxis near you, and receive smart recommendations for the best places to hail a ride.
 
