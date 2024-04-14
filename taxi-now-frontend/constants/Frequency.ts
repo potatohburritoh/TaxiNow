@@ -1,0 +1,1 @@
+export const locationUpdateFrequency = 1 * 15 * 1000; // 15 seconds
