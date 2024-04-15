@@ -26,5 +26,8 @@ project.xcworkspace
 # Bundle artifacts
 *.jsbundle
 
+# API Key
+.env
+
 # CocoaPods
 /Pods/

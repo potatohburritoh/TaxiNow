@@ -6,9 +6,11 @@
 
 @implementation AppDelegate
 
+const apiKey = process.env.GOOGLE_MAP_API_KEY;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [GMSServices provideAPIKey:@"AIzaSyB2e5hx0nMX-fp6ZKGQDK_T29xDBXVlfuk"]; // don't steal this.
+  [GMSServices provideAPIKey:@{apiKey}]; // don't steal this.
   self.moduleName = @"main";
 
   // You can add your custom initial props in the dictionary below.
